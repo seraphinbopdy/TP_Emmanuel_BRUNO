@@ -34,7 +34,11 @@ public class Chenilres {
         return controllerChenil.getChenilByID(id);
     }
 
-
+@DELETE
+@Path("delete/{id:\\d+}")
+public void delete(@PathParam("id") int id) {
+        controllerChenil.removeChenil(id);
+}
 
 
 
