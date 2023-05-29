@@ -1,15 +1,16 @@
 package Repertoire_REST;
 
 import Controller.ControllerChenil;
-import FichierSerialisationJson.ConvertToJson;
+import Entites.Chenil;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
 
 @Path("chenilresource")
 public class Chenilres {
 
     ControllerChenil controllerChenil = new ControllerChenil();
-    private ConvertToJson json = new ConvertToJson();
     @GET
     @Path("persist")
     public void AddChenil()  {
@@ -21,17 +22,16 @@ public class Chenilres {
     @GET
     @Path("allChenil")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getListChenil() {
-        String asToString = json.SerialiserChenilList(controllerChenil.getList());
-        return asToString;
+    public List<Chenil> getListChenil() {
+        return controllerChenil.getList();
     }
 
 
     @GET
-    @Path("chenil/{id}")
+    @Path("chenil/{id : \\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String GetChenilByID(@PathParam("id") int id) throws NotFoundException {
-        return json.SerialiserChenilById(controllerChenil.getChenilByID(id));
+    public Chenil GetChenilByID(@PathParam("id") int id) throws NotFoundException {
+        return controllerChenil.getChenilByID(id);
     }
 
 

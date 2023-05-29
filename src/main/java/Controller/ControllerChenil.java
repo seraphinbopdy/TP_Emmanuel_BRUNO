@@ -27,14 +27,14 @@ public class ControllerChenil {
 
     public List<Chenil> getList(){
         List<Chenil> listeChenils = chenilDAO.findAll();
-        List<Chien> listeChiens = chienDAO.findAll();
-        for (Chenil chenil : listeChenils){
-            for (Chien chien : listeChiens){
-                if (chien.getID_CHENIL() == chenil.getId()){
-                    chenil.setListChien(chien);
-                }
-            }
-        }
+        //List<Chien> listeChiens = chienDAO.findAll();
+       // for (Chenil chenil : listeChenils){
+         //   for (Chien chien : listeChiens){
+           //     if (chien.getID_CHENIL() == chenil.getId()){
+             //       chenil.setListChien(chien);
+             //   }
+           // }
+        //}
 
         return listeChenils;
     }

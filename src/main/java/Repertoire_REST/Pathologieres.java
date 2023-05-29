@@ -1,9 +1,11 @@
 package Repertoire_REST;
 
 import Controller.ControllerPathologie;
-import FichierSerialisationJson.ConvertToJson;
+import Entites.Pathologie;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
 
 @Path("pathologieresource")
 public class Pathologieres {
@@ -11,7 +13,6 @@ public class Pathologieres {
 
 
     ControllerPathologie controllerPathologie = new ControllerPathologie();
-    ConvertToJson json = new ConvertToJson();
     @GET
     @Path("persist")
     public void AddPatahologie()  {
@@ -21,17 +22,15 @@ public class Pathologieres {
     @GET
     @Path("allPatho")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getListPatho() {
-        String asToString = json.SerialiserPathologieList(controllerPathologie.getList());
-        return asToString;
+    public List<Pathologie> getListPatho() {
+        return controllerPathologie.getList();
     }
 
     @GET
-    @Path("pathologie/{id}")
+    @Path("pathologie/{id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String GetPathologieByID(@PathParam("id") int id) throws NotFoundException {
-        String asToString = json.SerialiserPathologieById(controllerPathologie.getPathologieByID(id));
-        return asToString;
+    public Pathologie GetPathologieByID( @PathParam("id") int id) throws NotFoundException {
+        return controllerPathologie.getPathologieByID(id);
     }
 
 
