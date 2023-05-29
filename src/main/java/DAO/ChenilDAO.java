@@ -46,4 +46,11 @@ public class ChenilDAO implements AutoCloseable {
     public void close() throws Exception {
 
     }
+
+    public void deleteById(int id) {
+        System.err.println(id);
+        entityManager.getTransaction().begin();
+        entityManager.remove(findChenilById(id));
+        entityManager.getTransaction().commit();
+    }
 }

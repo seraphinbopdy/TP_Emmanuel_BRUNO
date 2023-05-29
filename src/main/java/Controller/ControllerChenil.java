@@ -39,5 +39,8 @@ public class ControllerChenil {
         return listeChenils;
     }
 
+    public void removeChenil(int id) {
+        chenilDAO.deleteById(id);
+    }
 
 }
