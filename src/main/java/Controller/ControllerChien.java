@@ -18,6 +18,10 @@ public class ControllerChien {
     public  void insertChien(){
         Chien chien1 = new Chien("BERGER");
         Chien chien2 = new Chien("Boby");
+        chien2.setID_PERSONNE(4);
+        chien2.setID_CHENIL(2);
+        chien1.setID_PERSONNE(4);
+        chien1.setID_CHENIL(2);
         //Chien chien3 = new Chien("Berger Allemand");
         //Chien chien4 = new Chien("MaxWELL");
 

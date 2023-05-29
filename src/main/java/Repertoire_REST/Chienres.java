@@ -1,36 +1,36 @@
 package Repertoire_REST;
 
 import Controller.ControllerChien;
-import FichierSerialisationJson.ConvertToJson;
+import Entites.Chien;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
 
 @Path("chienresource")
 public class Chienres {
 
   private ControllerChien controllerChien = new ControllerChien();
-    private ConvertToJson json = new ConvertToJson();
-    @PUT
+    @GET
     @Path ("persist")
-    public void AddChien()  {
+    public String AddChien()  {
         controllerChien.insertChien();
+        return null; //TODO replace this stub to something useful
     }
 
     @GET
     @Path("allChien")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getListPerson() {
-        String asToString = json.serialiserChien(controllerChien.getList());
-        return asToString;
+    public List<Chien> getListPerson() {
+         return controllerChien.getList();
     }
 
 
     @GET
-    @Path("chien/{id}")
+    @Path("chien/{id:\\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String GetChienByID(@PathParam("id") int id) throws NotFoundException{
-        String asToString = json.serialiserChienById(controllerChien.getChienByID(id));
-        return asToString;
+    public Chien GetChienByID( @PathParam("id") int id) throws NotFoundException{
+        return controllerChien.getChienByID(id);
     }
 
 

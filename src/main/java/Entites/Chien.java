@@ -30,7 +30,7 @@ public class Chien {
 
     //Correspondence avec les Pathologie
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_CHIEN",referencedColumnName = "ID_PATHO")
+    @JoinColumn(name = "ID_CHIEN")
     private List<Pathologie> listPathologie;
 
     public Chien(String nonChien) {

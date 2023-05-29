@@ -13,15 +13,14 @@
         <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
         <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
         <property name="jakarta.persistence.jdbc.user" value="sa"/>
-        <property name="jakarta.persistence.jdbc.password" value="1234"/>
+        <property name="jakarta.persistence.jdbc.password" value=""/>
         <!--property name="jakarta.persistence.target-database" value="mydb"/>
         <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
         <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:tcp://192.168.56.1:9092"/>
         <property name="jakarta.persistence.jdbc.user" value="sa"/>
         <property name="jakarta.persistence.jdbc.password" value="1234"/-->
         <!-- Les options de générations des tables -->
-        <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
-        <property name="jakarta.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+        <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
         <property name="jakarta.persistence.schema-generation.scripts.create-target" value="sampleCreate.ddl"/>
         <property name="jakarta.persistence.schema-generation.scripts.drop-target" value="sampleDrop.ddl"/>
         <!--property name="jakarta.persistence.sql-load-script-source" value="insert.sql"/-->

@@ -23,8 +23,8 @@ public class Chenil implements Serializable {
     private String nomChenil;
 
 
-    @OneToMany
-    @JoinColumn(name = "ID_CHENIL", referencedColumnName = "ID_CHENIL")
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "ID_CHENIL")
     private List<Chien> listChien;
 
     public Chenil(String nomChenil){
@@ -33,6 +33,10 @@ public class Chenil implements Serializable {
 
     public Chenil(){}
 
+    public void setListChien(List<Chien> listChien)
+    {
+        this.listChien = listChien;
+    }
     public void setListChien(Chien chien)
     {
         this.listChien.add(chien);
