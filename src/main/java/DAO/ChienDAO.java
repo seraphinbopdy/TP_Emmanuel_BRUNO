@@ -20,6 +20,7 @@ public class ChienDAO implements AutoCloseable{
     {
         entityManager.getTransaction().begin();
         entityManager.persist(chien);
+        entityManager.merge(chien.getChenil());
         entityManager.getTransaction().commit();
         return chien;
     }
@@ -35,9 +36,22 @@ public class ChienDAO implements AutoCloseable{
         return entityManager.find(Chien.class,id);
     }
 
-    public void delete(int id){
+    public void deleteChienById(int id){
+        entityManager.getTransaction().begin();
         Chien chien= findChienById(id);
         entityManager.remove(chien);
+        entityManager.getTransaction().commit();
+    }
+
+
+
+
+    public Chien updateChien(Chien chien) {
+        Chien chien1 = findChienById(chien.getId());
+        entityManager.getTransaction().begin();
+        entityManager.merge(chien);
+        entityManager.getTransaction().commit();
+        return chien;
     }
 
 

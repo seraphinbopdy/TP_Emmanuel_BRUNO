@@ -15,7 +15,7 @@ public class Chenilres {
     @Path("persist")
     public void AddChenil()  {
         controllerChenil.addChenil();
-        System.out.println("Reussi");
+        System.out.println("Insertion Chenil Reussi");
 
     }
 
@@ -28,18 +28,28 @@ public class Chenilres {
 
 
     @GET
-    @Path("chenil/{id : \\d+}")
+    @Path("chenil/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Chenil GetChenilByID(@PathParam("id") int id) throws NotFoundException {
         return controllerChenil.getChenilByID(id);
     }
 
-@DELETE
-@Path("delete/{id:\\d+}")
-public void delete(@PathParam("id") int id) {
-        controllerChenil.removeChenil(id);
-}
 
+    @DELETE
+    @Path("delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteChenil(@PathParam("id") int id){
+
+        controllerChenil.removeChenil(id);
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("update/")
+    public void updateChenil( Chenil chenil){
+        controllerChenil.updateChenil(chenil);
+        System.err.println(chenil);
+    }
 
 
 }

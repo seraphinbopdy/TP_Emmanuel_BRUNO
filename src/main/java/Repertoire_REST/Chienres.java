@@ -15,7 +15,8 @@ public class Chienres {
     @Path ("persist")
     public String AddChien()  {
         controllerChien.insertChien();
-        return null; //TODO replace this stub to something useful
+        return null + "System.out.println(\"Insertion Reussi\");\n";
+
     }
 
     @GET
@@ -33,5 +34,18 @@ public class Chienres {
         return controllerChien.getChienByID(id);
     }
 
+
+    @DELETE
+    @Path("delete/{id}")
+    public void deleteChien(@PathParam("id") int id){
+        controllerChien.removeChien(id);
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("update")
+    public void updateChien(Chien chien){
+        controllerChien.updateChien(chien);
+    }
 
 }

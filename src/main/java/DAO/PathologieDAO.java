@@ -39,11 +39,35 @@ public class PathologieDAO implements AutoCloseable{
         return entityManager.find(Pathologie.class,id);
     }
 
-    public void delete(int id){
+    public void deletePathologie(int id){
+        entityManager.getTransaction().begin();
         Pathologie pathologie = findPathologieById(id);
         entityManager.remove(pathologie);
+        entityManager.getTransaction().commit();
     }
 
+
+
+    public Pathologie updatePathologie(int id){
+        Pathologie pathologie1 = findPathologieById(id);
+        entityManager.getTransaction().begin();
+        pathologie1.setNomPathologie(pathologie1.getNomPathologie());
+        pathologie1.setDescriptionPathologie(pathologie1.getDescriptionPathologie());
+        entityManager.persist(pathologie1);
+        entityManager.getTransaction().commit();
+        return pathologie1;
+    }
+
+
+    public Pathologie updatePathologie(Pathologie pathologie){
+        Pathologie pathologie1 = findPathologieById(pathologie.getID_PATHO());
+        entityManager.getTransaction().begin();
+        pathologie1.setNomPathologie(pathologie.getNomPathologie());
+        pathologie1.setDescriptionPathologie(pathologie.getDescriptionPathologie());
+        entityManager.persist(pathologie);
+        entityManager.getTransaction().commit();
+        return pathologie;
+    }
 
 
     @Override

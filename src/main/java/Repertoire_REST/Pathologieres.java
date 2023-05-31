@@ -17,6 +17,8 @@ public class Pathologieres {
     @Path("persist")
     public void AddPatahologie()  {
         controllerPathologie.insertPathologie();
+        System.out.println(" Insertion Pathologie Reussi");
+
     }
 
     @GET
@@ -27,24 +29,24 @@ public class Pathologieres {
     }
 
     @GET
-    @Path("pathologie/{id:\\d+}")
+    @Path("pathologie/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Pathologie GetPathologieByID( @PathParam("id") int id) throws NotFoundException {
         return controllerPathologie.getPathologieByID(id);
     }
 
 
-    /*
-    *  @PUT
-    @Path ("deletePatho/{id}")
-    public void deletePatahologie(@PathParam("id") long id){
-        patologieController.deletePathoById(id);
+    @DELETE
+    @Path("delete/{id}")
+    public void deletePathologie(@PathParam("id") int id){
+        controllerPathologie.removePathologie(id);
     }
-    *
-    * */
 
-
-
+    @PUT
+    @Path("update/{id}")
+    public void updatePathologie(@PathParam("id") int id){
+        controllerPathologie.updatePathologie(id);
+    }
 
 
 }

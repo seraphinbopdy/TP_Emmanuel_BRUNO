@@ -34,10 +34,10 @@ public class ControllerPathologie {
         Pathologie pathologie4 = new Pathologie("rock ", "virus pour berger");
 
 
-        pathologie1.setID_CHIEN(chienDAO.findAll().get(0).getID_CHIEN());
-        pathologie2.setID_CHIEN(chienDAO.findAll().get(0).getID_CHIEN());
-        pathologie3.setID_CHIEN(chienDAO.findAll().get(1).getID_CHIEN());
-        pathologie4.setID_CHIEN(chienDAO.findAll().get(1).getID_CHIEN());
+        pathologie1.setID_CHIEN(chienDAO.findAll().get(0).getId());
+        pathologie2.setID_CHIEN(chienDAO.findAll().get(0).getId());
+        pathologie3.setID_CHIEN(chienDAO.findAll().get(1).getId());
+        pathologie4.setID_CHIEN(chienDAO.findAll().get(1).getId());
 
         pathologieDAO.persist(pathologie1);
         pathologieDAO.persist(pathologie2);
@@ -57,15 +57,15 @@ public class ControllerPathologie {
     }
 
 
-
-
-/*
-*
-*     public void deletePathoById(long id) {
-        pathologieDao.delete(pathologieDao.findById(id));
+    public void removePathologie(int id) {
+        pathologieDAO.deletePathologie(id);
     }
-*/
 
 
 
+    public void updatePathologie(int id){
+        pathologieDAO.updatePathologie(id);
     }
+
+
+}

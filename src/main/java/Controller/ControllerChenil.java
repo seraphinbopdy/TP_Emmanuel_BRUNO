@@ -10,7 +10,7 @@ import java.util.List;
 public class ControllerChenil {
 
     ChienDAO chienDAO = new ChienDAO();
-    ChenilDAO chenilDAO = new ChenilDAO();
+    private static  final ChenilDAO chenilDAO = new ChenilDAO();
 
     public void addChenil(){
         Chenil chenil = new Chenil("Petite Cage");
@@ -27,20 +27,19 @@ public class ControllerChenil {
 
     public List<Chenil> getList(){
         List<Chenil> listeChenils = chenilDAO.findAll();
-        //List<Chien> listeChiens = chienDAO.findAll();
-       // for (Chenil chenil : listeChenils){
-         //   for (Chien chien : listeChiens){
-           //     if (chien.getID_CHENIL() == chenil.getId()){
-             //       chenil.setListChien(chien);
-             //   }
-           // }
-        //}
-
         return listeChenils;
     }
 
     public void removeChenil(int id) {
         chenilDAO.deleteById(id);
+    }
+
+    public void updateChenil(Chenil chenil){
+        chenilDAO.updateChenil(chenil);
+    }
+
+    public static List<Chien> chiensOfChenil(List<Integer> liste){
+        return chenilDAO.returnListChien(liste);
     }
 
 }

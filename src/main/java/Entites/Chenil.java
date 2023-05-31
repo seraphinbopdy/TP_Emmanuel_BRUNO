@@ -1,12 +1,16 @@
 package Entites;
 
 
+import Controller.ControllerChenil;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,7 +29,9 @@ public class Chenil implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "ID_CHENIL")
-    private List<Chien> listChien;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+    @JsonIdentityReference(alwaysAsId = true )
+    private List<Chien> listChien = new ArrayList<>();
 
     public Chenil(String nomChenil){
         this.nomChenil = nomChenil;
@@ -37,7 +43,7 @@ public class Chenil implements Serializable {
     {
         this.listChien = listChien;
     }
-    public void setListChien(Chien chien)
+    public void addChien(Chien chien)
     {
         this.listChien.add(chien);
     }
@@ -46,6 +52,17 @@ public class Chenil implements Serializable {
     {
         return listChien;
     }
+
+    @JsonSetter("listChien")
+    public List<Chien> getListChien(List<Integer> listId) {
+        return ControllerChenil.chiensOfChenil(listId);
+    }
+
+
+
+
+
+
 
 
 }

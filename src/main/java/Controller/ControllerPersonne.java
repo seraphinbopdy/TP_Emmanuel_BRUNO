@@ -34,7 +34,7 @@ public class ControllerPersonne {
 
         for(Personne personne: listPersonne){
             for(Chien chien: listChien){
-                if(chien.getID_CHIEN() == personne.getID_PERSONNE()) personne.setChien(chien); ;
+                if(chien.getId() == personne.getID_PERSONNE()) personne.setChien(chien); ;
             }
         }
         return listPersonne;
@@ -48,47 +48,12 @@ public class ControllerPersonne {
     }
 
 
-/*
-
-
-    public void updatePerson(long id ,String nom , String prenom ){
-        Personne user = personDAO.findById(id);
-        String[] param = null;
-        param[0]=nom;
-        param[1]= prenom;
-        personDAO.update(user,param);
+    public void removePersonne(int id) {
+        personDAO.deletePersonne(id);
     }
 
-*
-    public void deleteChienPersonnne(long idPersonne) {
-
-        listChien = chienDAO.findAll();
-        listPersonne = personDAO.findAll();
-        pathologieList = pathologieDao.findAll();
-        for(Personne p: listPersonne){
-            for(Chien c: listChien){
-                if(c.getPersonne_id() == p.getPersonne_id()){
-                    p.setChien(c);
-                }
-            }
-        }
-
-        Personne p = new Personne();
-        for(Personne pers: listPersonne){
-            if(pers.getPersonne_id() == idPersonne)
-                p = pers;
-        }
-        for(Pathologie patho: pathologieList){
-            if (patho.getChien_id() ==p.getChien().getChien_id())
-                pathologieDao.delete(patho);
-        }
-        chienDAO.delete(p.getChien());
+    public void updatePersonne(int id){
+        personDAO.updatePersonne(id);
     }
-
-*
-* */
-
-
-
 
 }

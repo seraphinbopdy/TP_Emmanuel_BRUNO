@@ -1,10 +1,8 @@
 package DAO;
 
 import Entites.Chenil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import Entites.Chien;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -36,16 +34,7 @@ public class ChenilDAO implements AutoCloseable {
         return entityManager.find(Chenil.class,id);
     }
 
-    public void delete(int id){
-        Chenil chenil = findChenilById(id);
-        entityManager.remove(chenil);
-    }
 
-
-    @Override
-    public void close() throws Exception {
-
-    }
 
     public void deleteById(int id) {
         System.err.println(id);
@@ -53,4 +42,28 @@ public class ChenilDAO implements AutoCloseable {
         entityManager.remove(findChenilById(id));
         entityManager.getTransaction().commit();
     }
+
+
+
+    public Chenil updateChenil(Chenil chenil) {
+        entityManager.getTransaction().begin();
+        System.err.println("liste des chiens" + chenil.getListChien());
+        entityManager.merge(chenil);
+        entityManager.getTransaction().commit();
+        return chenil;
+    }
+
+    public List<Chien> returnListChien(List<Integer> list){
+        TypedQuery<Chien> query = entityManager.createQuery("Select C FROM Chien c where c.id in :list", Chien.class);
+        query.setParameter("list",list);
+        List<Chien> c = query.getResultList();
+        System.err.println(c);
+        return c;
+    }
+
+    @Override
+    public void close() throws Exception {
+
+    }
+
 }

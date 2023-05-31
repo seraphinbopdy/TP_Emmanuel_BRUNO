@@ -17,7 +17,7 @@ public class Personneres {
     @Path("persist")
     public void AddPerson()  {
         controllerPersonne.insertPersonne();
-        System.out.println("persist personne working!!");
+        System.out.println("Insertion Personne Reussi");
     }
 
 
@@ -31,35 +31,24 @@ public class Personneres {
 
 
     @GET
-    @Path("person/{id: \\d+}")
+    @Path("person/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Personne GetPersonByID(@PathParam("id") int id) throws NotFoundException {
       return controllerPersonne.getPersonByID(id);
     }
 
 
-      /*
-    @PUT
-    @Path("updatePerson")
-    public void updatePerson( @QueryParam("id") int id,
-                              @QueryParam("nom") String nom,
-                              @QueryParam("prenom") String prenom){
-
-        controller.updatePerson(id, nom, prenom);
-        System.out.println("update is ok!");
+    @DELETE
+    @Path("delete/{id}")
+    public void deletePersonne(@PathParam("id") int id){
+        controllerPersonne.removePersonne(id);
     }
 
-    /*
     @PUT
-    @Path("deleteChienPerson/{idPersonne}")
-    public void deleteChien( @PathParam("idPersonne") int idPersonne){
-        controller.deleteChienPersonnne(idPersonne);
-
+    @Path("update/{id}")
+    public void updatePersonne(@PathParam("id") int id){
+        controllerPersonne.updatePersonne(id);
     }
-
-
-     */
-
 
 
 
